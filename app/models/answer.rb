@@ -1,6 +1,6 @@
 class Answer < ActiveRecord::Base
   belongs_to :question
-  # has_many :thirdmodels
+  # has_many :comments
 
   validates :content, :presence => true
   validates_length_of :content, :maximum => 30, :message => "less text please"

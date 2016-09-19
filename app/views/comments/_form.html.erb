@@ -1,0 +1,10 @@
+<%= form_for [@this_question, @this_comment] do |f| %>
+<div class="field">
+  <%= f.label :content %>
+  <%= f.text_field :content %>
+</div>
+<br>
+<div class="actions">
+  <%= f.submit %>
+</div>
+<% end %>

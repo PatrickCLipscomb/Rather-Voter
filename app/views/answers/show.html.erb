@@ -2,8 +2,8 @@
 
 <% if 1 == 0 %>
 <ul class="list-group well">
-  <% @answer.thirdmodels.each do |thirdmodel| %>
-  <li class="list-group-item"><strong><%= thirdmodel.name %></strong> <%= link_to "View thirdmodel", answer_thirdmodel_path(@answer, thirdmodel), :class => "btn btn-info btn-sm pull-right"%></li>
+  <% @answer.comments.each do |comment| %>
+  <li class="list-group-item"><strong><%= comment.name %></strong> <%= link_to "View comment", answer_comment_path(@answer, comment), :class => "btn btn-info btn-sm pull-right"%></li>
   <% end %>
 </ul>
 <%end%>
@@ -11,7 +11,7 @@
 <div class="btn-group">
   <%= link_to "Edit", edit_answer_path(@answer), :class => "btn btn-primary" %>
   <%= link_to "Delete", answer_path(@answer), :class => "btn btn-primary", :data => {:confirm => "You Sure?", :method => 'delete'} %>
-  <%= link_to "Add a thirdmodel", new_answer_thirdmodel_path(@answer), :class => "btn btn-primary" %>
+  <%= link_to "Add a comment", new_answer_comment_path(@answer), :class => "btn btn-primary" %>
 </div>
 
 <hr>

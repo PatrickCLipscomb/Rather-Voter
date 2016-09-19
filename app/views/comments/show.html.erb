@@ -1,0 +1,10 @@
+<h1><%= @comment.name %> Page</h1>
+
+
+<%= link_to "Edit", edit_question_comment_path(@comment) %> |
+
+<%= link_to "Delete", question_comment_path(@comment), :data => {:confirm => "You Sure?", :method => 'delete'} %> |
+
+<hr>
+
+<%= link_to "Back to question", question_path(@question) %>

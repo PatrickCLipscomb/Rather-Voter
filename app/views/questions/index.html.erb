@@ -1,29 +1,51 @@
 <h1>question Page</h1>
 <hr>
-<ul class="list-group well" id="questions-list">
-  <% @questions.each do |question| %>
-    <li class="list-group-item"><strong><%= question.content %></strong>
-      <span class="pull-right">
-        <%= link_to "Question Page", question_path(question), :class => "btn btn-info btn-sm"%>
-      </span>
-      <br>
-      <br>
-      <br>
-
-      <% question.answers.order("id asc").each do |answer| %>
-        <span align="middle" class="well answerInline"><%=answer.content%>
-          <%= link_to "Vote", vote_answer_path(answer), :method => 'post', remote: true %>
-        </span>
-        <% if answer.id == question.answers.order("id asc")[0].id %>
-          <h3 align="middle" class="answerInline">Left Votes: <span id="<%=answer.id.to_s%>upVote"><%=question.answers.order("id asc")[0].votes%></span></h3>
-          <% identification = answer.id + 1 %>
-          <h3 align="middle" class="answerInline">Right Votes: <span id="<%=identification.to_s%>upVote"><%=question.answers.order("id asc")[1].votes%></span></h3>
-        <% end %>
+<div class="row">
+  <div class="col-sm-8">
+    <ul class="list-group well" id="questions-list">
+      <% @questions.each do |question| %>
+        <li class="list-group-item question-li"><strong><%= question.content %></strong>
+          <span class="pull-right">
+            <%= link_to "Question Page", question_path(question), :class => "btn btn-info btn-sm"%>
+          </span>
+          <br>
+          <br>
+          <br>
+          <div class="center-question">
+            <% question.answers.order("id asc").each do |answer| %>
+              <span align="middle" class="well answerInline"><%=answer.content%>
+                <%= link_to "Vote", vote_answer_path(answer), :method => 'post', remote: true %>
+              </span>
+              <% if answer.id == question.answers.order("id asc")[0].id %>
+                <h5 align="middle" class="answerInline">Left Votes: <span id="<%=answer.id.to_s%>upVote"><%=question.answers.order("id asc")[0].votes%></span></h5>
+                <% if question.answers && question.answers.length > 1 %>
+                  <% identification = answer.id + 1 %>
+                  <h5 align="middle" class="answerInline">Right Votes: <span id="<%=identification.to_s%>upVote"><%=question.answers.order("id asc")[1].votes%></span></h5>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+          <br><br><br>
+        </li>
+        <br><br>
       <% end %>
+    </ul>
+  </div>
 
-      <br><br><br>
-    </li>
-  <% end %>
-</ul>
+  <div class="col-sm-4">
+    <ul class="list-group well" id="comments-list">
+      <% @questions.each do |question| %>
+        <li class="list-group-item question-li">
+          <br><br><br>
+          <% @this_question = question %>
+          <% @this_comment = question.comments.new %>
+          <%= render :partial => 'comments/form', :obect => [@this_question, @this_comment] %>
+          <br><br><br>
+        </li>
+        <br><br>
+      <% end %>
+    </ul>
+  </div>
+</div>
 <hr>
 <%= link_to "Add a question", new_question_path, :class => "btn-lg", :id => 'question-js', remote: true %>
