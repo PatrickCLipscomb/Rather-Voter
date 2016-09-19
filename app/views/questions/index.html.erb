@@ -10,13 +10,14 @@
       <br>
       <br>
 
-      <% question.answers.order("id desc").each do |answer| %>
+      <% question.answers.order("id asc").each do |answer| %>
         <span align="middle" class="well answerInline"><%=answer.content%>
-          <%= link_to "Vote", vote_answer_path(answer), :method => 'post' %>
+          <%= link_to "Vote", vote_answer_path(answer), :method => 'post', remote: true %>
         </span>
-        <% if answer.id == question.answers.order("id desc")[0].id %>
-          <h3 align="middle" class="answerInline">Left Votes: <%=question.answers.order("id desc")[0].votes%></h3>
-          <h3 align="middle" class="answerInline">Right Votes: <%=question.answers.order("id desc")[1].votes%></h3>
+        <% if answer.id == question.answers.order("id asc")[0].id %>
+          <h3 align="middle" class="answerInline">Left Votes: <span id="<%=answer.id.to_s%>upVote"><%=question.answers.order("id asc")[0].votes%></span></h3>
+          <% identification = answer.id + 1 %>
+          <h3 align="middle" class="answerInline">Right Votes: <span id="<%=identification.to_s%>upVote"><%=question.answers.order("id asc")[1].votes%></span></h3>
         <% end %>
       <% end %>
 

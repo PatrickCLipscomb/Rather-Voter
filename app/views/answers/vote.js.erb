@@ -1,0 +1,3 @@
+// alert("<%=@answer.content%>")
+
+$('#<%= @answer.id.to_s %>upVote').replaceWith("<span id='<%=@answer.id.to_s%>upVote'><%= @answer.votes.to_s %></span>")

@@ -1,8 +1,11 @@
 class AnswersController < ApplicationController
   def vote
-    answer = Answer.find(params[:id])
-    answer.upvote()
-    redirect_to questions_path
+    @answer = Answer.find(params[:id])
+    @answer.upvote()
+    respond_to do |format|
+      format.html {redirect_to questions_path}
+      format.js
+    end
   end
   def show
     @answer = Answer.find(params[:id])
