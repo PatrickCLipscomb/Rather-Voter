@@ -16,7 +16,10 @@ class CommentsController < ApplicationController
     @comment = @question.comments.new(comment_params)
     if @comment.save
       flash[:notice] = "Comment saved successfully"
-      redirect_to question_path(@question)
+      respond_to do |format|
+        format.html {redirect_to questions_path}
+        format.js
+      end
     else
       flash[:alert] = "Comment failed to save"
       render :new

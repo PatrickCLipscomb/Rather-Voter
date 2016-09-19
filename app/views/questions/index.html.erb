@@ -40,6 +40,13 @@
           <% @this_question = question %>
           <% @this_comment = question.comments.new %>
           <%= render :partial => 'comments/form', :obect => [@this_question, @this_comment] %>
+          <ul class="list-group" id="<%=question.id%>comments_list">
+            <% question.comments.each_with_index do |comment, index| %>
+              <% if index < 5 && index >= 0 %>
+                <li class="list-group-item"><%= comment.content %></li>
+              <% end %>
+            <% end %>
+          </ul>
           <br><br><br>
         </li>
         <br><br>

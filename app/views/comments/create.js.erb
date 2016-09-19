@@ -1,0 +1,4 @@
+<% if (@question.comments.length < 6) && (@question.comments.length > 0)%>
+  $('#<%=@question.id.to_s%>comments_list').append('<li class="list-group-item"><%=@comment.content%></li>');
+  $('#comment_content').val("");
+<% end %>
