@@ -1,10 +1,10 @@
-<%= form_for [@question, @answer] do |f| %>
-<div class="field">
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-</div>
-<br>
-<div class="actions">
-  <%= f.submit %>
-</div>
+<%= form_for [@question, @answer], html: {id: :answer_form}, remote: true do |f| %>
+  <div class="field">
+    <%= f.label :content %>
+    <%= f.text_field :content %>
+  </div>
+  <br>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
 <% end %>

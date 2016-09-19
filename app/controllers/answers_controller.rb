@@ -16,7 +16,10 @@ class AnswersController < ApplicationController
     @answer = @question.answers.new(answer_params)
     if @answer.save
       flash[:notice] = "Answer saved successfully"
-      redirect_to question_path(@question)
+      respond_to do |format|
+        format.html {redirect_to question_path(@question)}
+        format.js
+      end
     else
       flash[:alert] = "Answer failed to save"
       render :new
