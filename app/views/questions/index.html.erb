@@ -4,7 +4,7 @@
   <% @questions.each do |question| %>
     <li class="list-group-item"><strong><%= question.content %></strong>
       <span class="pull-right">
-        <%= link_to "Add Answer", new_question_answer_path(question), :class => "btn btn-info btn-sm", :id => question.id.to_s + "-js", remote: true %>
+        <%= link_to "Question Page", question_path(question), :class => "btn btn-info btn-sm"%>
       </span>
       <br><br><br><br>
     </li>

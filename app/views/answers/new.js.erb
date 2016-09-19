@@ -1,3 +1,6 @@
-
-
-$('#<%= @question.id%>-js').hide().after('<%= j render("form") %>');
+<% if @question.answers.length < 3 %>
+$('#first-answer').hide().after('<%= j render("form") %>');
+<% else %>
+$('#first-answer').hide().after('<h4>Limit of 2 would you rathers....</h4>');
+$('#first-answer').remove();
+<% end %>
