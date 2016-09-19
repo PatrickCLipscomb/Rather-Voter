@@ -1,4 +1,9 @@
 class AnswersController < ApplicationController
+  def vote
+    answer = Answer.find(params[:id])
+    answer.upvote()
+    redirect_to questions_path
+  end
   def show
     @answer = Answer.find(params[:id])
     @question = @answer.question

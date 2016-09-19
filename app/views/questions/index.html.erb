@@ -6,7 +6,21 @@
       <span class="pull-right">
         <%= link_to "Question Page", question_path(question), :class => "btn btn-info btn-sm"%>
       </span>
-      <br><br><br><br>
+      <br>
+      <br>
+      <br>
+
+      <% question.answers.order("id desc").each do |answer| %>
+        <span align="middle" class="well answerInline"><%=answer.content%>
+          <%= link_to "Vote", vote_answer_path(answer), :method => 'post' %>
+        </span>
+        <% if answer.id == question.answers.order("id desc")[0].id %>
+          <h3 align="middle" class="answerInline">Left Votes: <%=question.answers.order("id desc")[0].votes%></h3>
+          <h3 align="middle" class="answerInline">Right Votes: <%=question.answers.order("id desc")[1].votes%></h3>
+        <% end %>
+      <% end %>
+
+      <br><br><br>
     </li>
   <% end %>
 </ul>
