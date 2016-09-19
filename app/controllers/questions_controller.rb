@@ -25,9 +25,11 @@ class QuestionsController < ApplicationController
     end
   end
   def update
+    @question = Question.find(params[:id])
     @question = @question.update(question_params)
   end
   def destroy
+    @question = Question.find(params[:id])
     if @question.delete
       flash[:notice] = "Question deleted"
       redirect_to questions_path

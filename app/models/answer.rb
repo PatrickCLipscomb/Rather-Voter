@@ -3,6 +3,7 @@ class Answer < ActiveRecord::Base
   # has_many :thirdmodels
 
   validates :content, :presence => true
+  validates_length_of :content, :maximum => 30, :message => "less text please"
 
   def upvote
     if !self.votes
