@@ -1,0 +1,9 @@
+<h1>question Page</h1>
+<hr>
+<ul class="list-group well" id="questions-list">
+  <% @questions.each do |question| %>
+    <li class="list-group-item"><strong><%= question.content %></strong> <%= link_to "question Page", question_path(question), :class => "btn btn-info btn-sm pull-right" %></li>
+  <% end %>
+</ul>
+<hr>
+<%= link_to "Add a question", new_question_path, :class => "btn-lg", :id => 'question-js', remote: true %>
