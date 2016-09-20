@@ -1,4 +1,5 @@
 <h1>question Page</h1>
+
 <hr>
 <div class="row">
   <div class="col-sm-8">
@@ -8,19 +9,22 @@
           <span class="pull-right">
             <%= link_to "Question Page", question_path(question), :class => "btn btn-info btn-sm"%>
           </span>
-          <br>
-          <br>
-          <br>
           <div class="center-question">
             <% question.answers.order("id asc").each do |answer| %>
-              <span align="middle" class="well answerInline"><%=answer.content%>
+              <span align="middle" class="well answerInline"><% if answer.id == question.answers.order("id asc").first.id %><strong>First Option: </strong><% else %><strong>Second Option: </strong><% end %><%=answer.content%>
                 <%= link_to "Vote", vote_answer_path(answer), :method => 'post', remote: true %>
               </span>
               <% if answer.id == question.answers.order("id asc")[0].id %>
-                <h5 align="middle" class="answerInline">Left Votes: <span id="<%=answer.id.to_s%>upVote"><%=question.answers.order("id asc")[0].votes%></span></h5>
+              <% @this_question = question %>
+              <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+              <div id="chart-<%=question.id.to_s%>" style="height: 300px;">
+                <%= render :partial => 'pie_chart', :obect => @this_question %>
+              </div>
+                <h5 align="middle" class="answerInline">
+                  First Option Votes: <span id="<%=answer.id.to_s%>upVote"><%=question.answers.order("id asc")[0].votes%></span></h5>
                 <% if question.answers && question.answers.length > 1 %>
                   <% identification = answer.id + 1 %>
-                  <h5 align="middle" class="answerInline">Right Votes: <span id="<%=identification.to_s%>upVote"><%=question.answers.order("id asc")[1].votes%></span></h5>
+                  <h5 align="middle" class="answerInline">Second Option Votes: <span id="<%=identification.to_s%>upVote"><%=question.answers.order("id asc")[1].votes%></span></h5>
                 <% end %>
               <% end %>
             <% end %>

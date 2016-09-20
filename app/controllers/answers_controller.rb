@@ -1,7 +1,12 @@
 class AnswersController < ApplicationController
   def vote
     @answer = Answer.find(params[:id])
+    @question = @answer.question
     @answer.upvote()
+    @firstContent = @question.answers.order("id asc")[0].content
+    @secondContent = @question.answers.order("id asc")[1].content
+    @firstVal = @question.answers.order("id asc")[1].votes
+    @secondVal = @question.answers.order("id asc")[0].votes
     respond_to do |format|
       format.html {redirect_to questions_path}
       format.js

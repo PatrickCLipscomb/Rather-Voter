@@ -1,0 +1,3 @@
+
+
+<%= pie_chart({"First Option" => @this_question.answers.order("id asc")[0].votes, "Second Option" => @this_question.answers.order("id asc")[1].votes}) %>
