@@ -10,6 +10,7 @@ class QuestionsController < ApplicationController
   end
   def new
     @question = Question.new
+    @timer_thingie = true
   end
   def create
     @question = Question.new(question_params)

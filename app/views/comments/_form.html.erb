@@ -1,6 +1,6 @@
 <%= form_for [@this_question, @this_comment], html: {id: @this_question.id.to_s + "comment_form"}, remote: true do |f| %>
 <div class="field">
-  <%= f.label :content %>
+  <%= f.label :content, 'Comment' %>
   <%= f.text_field :content %>
 </div>
 <br>

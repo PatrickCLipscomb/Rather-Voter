@@ -18,6 +18,8 @@ group :development, :test do
   gem 'pry'
   gem 'shoulda-matchers'
   gem 'capybara'
+  gem 'poltergeist'
+  # gem 'phantomjs'
 end
 
 group :development do
