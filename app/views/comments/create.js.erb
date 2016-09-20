@@ -1,8 +1,10 @@
 <% if @question.comments.length < 7 %>
   $('#<%=@question.id.to_s%>comments_list').prepend('<li class="list-group-item"><%=@comment.content%></li>');
+  $('#<%=@question.id.to_s%>comments_list li:first').addClass("animated bounceInDown");
   $('.commentInputText').val("");
 <% else %>
-  $('#<%=@question.id.to_s%>comments_list li:last').remove();
   $('#<%=@question.id.to_s%>comments_list').prepend('<li class="list-group-item"><%=@comment.content%></li>');
+  $('#<%=@question.id.to_s%>comments_list li:first').addClass("animated bounceInDown");
+  $('#<%=@question.id.to_s%>comments_list li:last').remove();
   $('.commentInputText').val("");
 <% end %>

@@ -10,6 +10,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
+gem "animate-rails"
 
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -19,7 +20,7 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'capybara'
   gem 'poltergeist'
-  # gem 'phantomjs'
+  gem 'database_cleaner'
 end
 
 group :development do
