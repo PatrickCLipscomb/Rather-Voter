@@ -1,4 +1,8 @@
-<% if (@question.comments.length < 6) && (@question.comments.length > 0)%>
-  $('#<%=@question.id.to_s%>comments_list').append('<li class="list-group-item"><%=@comment.content%></li>');
-  $('#comment_content').val("");
+<% if @question.comments.length < 7 %>
+  $('#<%=@question.id.to_s%>comments_list').prepend('<li class="list-group-item"><%=@comment.content%></li>');
+  $('.commentInputText').val("");
+<% else %>
+  $('#<%=@question.id.to_s%>comments_list li:last').remove();
+  $('#<%=@question.id.to_s%>comments_list').prepend('<li class="list-group-item"><%=@comment.content%></li>');
+  $('.commentInputText').val("");
 <% end %>

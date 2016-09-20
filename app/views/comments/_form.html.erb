@@ -1,10 +1,8 @@
-<%= form_for [@this_question, @this_comment], html: {id: @this_question.id.to_s + "comment_form"}, remote: true do |f| %>
-<div class="field">
-  <%= f.label :content, 'Comment' %>
-  <%= f.text_field :content %>
-</div>
-<br>
-<div class="actions">
-  <%= f.submit %>
+<%= form_for [@this_question, @this_comment], html: {id: @this_question.id.to_s + "comment_form", class: "form-inline"}, remote: true do |f| %>
+<div class="form-group">
+
+    <%= f.text_field :content, :class => 'commentInputText' %>
+
+    <%= f.submit "Add a Comment", :class => "btn btn-success btn-sm inline" %>
 </div>
 <% end %>
