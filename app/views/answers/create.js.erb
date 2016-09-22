@@ -1,3 +1,7 @@
 $('#answer_form').remove();
 $('#first-answer').show();
 $('#question-answers').append('<li class="list-group-item"><%= @answer.content %></li>');
+<% if @question.answers.length == 2 %>
+$('#first-answer').hide().after('<h4>Limit of 2 answers</h4>');
+$('#first-answer').remove();
+<% end %>

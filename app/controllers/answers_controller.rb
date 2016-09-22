@@ -23,6 +23,7 @@ class AnswersController < ApplicationController
   def new
     @question = Question.find(params[:question_id])
     @answer = @question.answers.new
+    @form_not_present = true
   end
   def create
     @question = Question.find(params[:question_id])

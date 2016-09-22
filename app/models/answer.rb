@@ -3,7 +3,7 @@ class Answer < ActiveRecord::Base
   # has_many :comments
 
   validates :content, :presence => true
-  validates_length_of :content, :maximum => 45, :message => "less text please"
+  validates_length_of :content, :maximum => 55, :message => "less text please"
 
   def upvote
     if !self.votes

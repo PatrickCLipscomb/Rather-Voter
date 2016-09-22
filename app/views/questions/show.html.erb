@@ -6,8 +6,10 @@
   <% end %>
 </ul>
 
-<% if @question.answers.length < 3 %>
+<% if @question.answers.length < 2 %>
   <%= link_to "Add a answer", new_question_answer_path(@question), :class => "btn btn-success", :id => "first-answer", remote: true %>
+<% else %>
+  <h4>Limit of 2 answers</h4>
 <% end %>
 
 <br><br>

@@ -1,6 +1,4 @@
-<% if @question.answers.length < 3 %>
-$('#first-answer').hide().after('<%= j render("form") %>');
-<% else %>
-$('#first-answer').hide().after('<h4>Limit of 2 would you rathers....</h4>');
-$('#first-answer').remove();
+<% if @question.answers.length < 3 && @form_not_present %>
+  $('#first-answer').hide().after('<%= j render("form") %>');
+  <% @form_not_present = false %>
 <% end %>
