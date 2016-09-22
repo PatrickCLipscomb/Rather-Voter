@@ -13,6 +13,8 @@ gem 'jbuilder', '~> 2.5'
 gem "animate-rails"
 gem "chartkick"
 gem "will_paginate"
+gem 'paperclip', '~> 4.1'
+gem 'remotipart', '~> 1.2'
 
 group :development, :test do
   gem 'byebug', platform: :mri

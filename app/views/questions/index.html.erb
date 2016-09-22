@@ -15,12 +15,18 @@
             <% question.answers.order("id asc").each do |answer| %>
               <span align="middle" class="well answerInline">
                 <% if answer.id == question.answers.order("id asc").first.id %><strong>First Option: </strong><%=answer.content%>
-                <br><%= link_to "Vote", vote_answer_path(answer), :method => 'post', :class => "btn btn-success", remote: true %>
+                <br>
+                <%= image_tag(answer.image.url(:medium), :class => "answer-img" ) %>
+                <br>
+                <%= link_to "Vote", vote_answer_path(answer), :method => 'post', :class => "btn btn-success", remote: true %>
                 <br>
                 <h5 align="middle" class="answerInline">
                 Votes: <span id="<%=answer.id.to_s%>upVote"><%=question.answers.order("id asc")[0].votes%></span></h5>
                 <% else %><strong>Second Option: </strong><%=answer.content%>
-                <br><%= link_to "Vote", vote_answer_path(answer), :method => 'post', :class => "btn btn-success", remote: true %>
+                <br>
+                <%= image_tag(answer.image.url(:medium), :class => "answer-img" ) %>
+                <br>
+                <%= link_to "Vote", vote_answer_path(answer), :method => 'post', :class => "btn btn-success", remote: true %>
                   <% if question.answers && question.answers.length > 1 %>
                     <% identification = answer.id + 1 %>
                     <br>
