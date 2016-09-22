@@ -11,8 +11,19 @@
           </span>
           <div class="center-question">
             <% question.answers.order("id asc").each do |answer| %>
-              <span align="middle" class="well answerInline"><% if answer.id == question.answers.order("id asc").first.id %><strong>First Option: </strong><% else %><strong>Second Option: </strong><% end %><%=answer.content%>
-                <%= link_to "Vote", vote_answer_path(answer), :method => 'post', remote: true %>
+              <span align="middle" class="well answerInline">
+                <% if answer.id == question.answers.order("id asc").first.id %><strong>First Option: </strong><%=answer.content%>
+                <br><%= link_to "Vote", vote_answer_path(answer), :method => 'post', :class => "btn btn-success", remote: true %>
+                <br>
+                <h5 align="middle" class="answerInline">
+                Votes: <span id="<%=answer.id.to_s%>upVote"><%=question.answers.order("id asc")[0].votes%></span></h5>
+                <% else %><strong>Second Option: </strong><%=answer.content%>
+                <br><%= link_to "Vote", vote_answer_path(answer), :method => 'post', :class => "btn btn-success", remote: true %> <% if question.answers && question.answers.length > 1 %>
+                  <% identification = answer.id + 1 %>
+                  <br>
+                  <h5 align="middle" class="answerInline">Votes: <span id="<%=identification.to_s%>upVote"><%=question.answers.order("id asc")[1].votes%></span></h5>
+                <% end %>
+                <% end %>
               </span>
               <% if answer.id == question.answers.order("id asc")[0].id %>
               <% @this_question = question %>
@@ -20,12 +31,6 @@
               <div id="chart-<%=question.id.to_s%>" style="height: 300px;">
                 <%= render :partial => 'pie_chart', :obect => @this_question %>
               </div>
-                <h5 align="middle" class="answerInline">
-                  First Option Votes: <span id="<%=answer.id.to_s%>upVote"><%=question.answers.order("id asc")[0].votes%></span></h5>
-                <% if question.answers && question.answers.length > 1 %>
-                  <% identification = answer.id + 1 %>
-                  <h5 align="middle" class="answerInline">Second Option Votes: <span id="<%=identification.to_s%>upVote"><%=question.answers.order("id asc")[1].votes%></span></h5>
-                <% end %>
               <% end %>
             <% end %>
           </div>
@@ -39,7 +44,7 @@
   <div class="col-sm-4">
     <ul class="list-group well" id="comments-list">
       <% @questions.each do |question| %>
-        <li class="list-group-item question-li">
+        <li class="list-group-item question-li aligned-comments">
           <br><br><br>
           <% @this_question = question %>
           <% @this_comment = question.comments.new %>
