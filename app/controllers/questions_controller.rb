@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   def index
-    @questions = Question.all
+    @questions = Question.all.paginate(:per_page => 3, :page => params[:page])
   end
   def show
     @question = Question.find(params[:id])

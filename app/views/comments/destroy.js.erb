@@ -1,0 +1,4 @@
+$('#<%=@comment.id.to_s%>-comment').addClass('animated bounceOut');
+$('#<%=@comment.id.to_s%>-comment').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+  $('#<%=@comment.id.to_s%>-comment').remove();
+});

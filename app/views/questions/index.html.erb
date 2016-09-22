@@ -54,7 +54,13 @@
           <%= render :partial => 'comments/form', :obect => [@this_question, @this_comment] %>
           <ul class="list-group" id="<%=question.id%>comments_list">
             <% question.comments.order('id desc').limit(13).each do |comment| %>
-                <li class="list-group-item"><%= comment.content %></li>
+                <li class="list-group-item" id="<%=comment.id.to_s%>-comment"><%= comment.content %>
+                  <span class="pull-right">
+                    <%= button_to question_comment_path(question, comment), :method => "delete", remote: true, :class => "btn btn-danger btn-sm bottom-padding" do %>
+                    <span class="glyphicon glyphicon-remove"></span>
+                    <% end %>
+                  </span>
+                </li>
             <% end %>
           </ul>
         </li>
@@ -63,4 +69,5 @@
     </ul>
   </div>
 </div>
+<%= will_paginate @questions, :class => 'pagination' %>
 <hr>

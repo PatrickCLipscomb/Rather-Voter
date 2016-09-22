@@ -37,7 +37,10 @@ class CommentsController < ApplicationController
     @question = @comment.question
     if @comment.delete
       flash[:notice] = "Comment deleted"
-      redirect_to question_path(@question)
+      respond_to do |format|
+        format.html {redirect_to questions_path}
+        format.js
+      end
     else
       flash[:alert] = "Comment failed to delete"
     end

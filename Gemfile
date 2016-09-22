@@ -12,6 +12,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem "animate-rails"
 gem "chartkick"
+gem "will_paginate"
 
 group :development, :test do
   gem 'byebug', platform: :mri
