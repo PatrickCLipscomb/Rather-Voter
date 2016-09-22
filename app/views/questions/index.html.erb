@@ -1,5 +1,7 @@
-<h1>question Page</h1>
-
+<div class="inline-header">
+  <h1>question Page</h1>
+  <%= link_to "Ask a question", new_question_path, :class => "btn-lg", :id => 'question-js', remote: true %>
+</div>
 <hr>
 <div class="row">
   <div class="col-sm-8">
@@ -18,11 +20,12 @@
                 <h5 align="middle" class="answerInline">
                 Votes: <span id="<%=answer.id.to_s%>upVote"><%=question.answers.order("id asc")[0].votes%></span></h5>
                 <% else %><strong>Second Option: </strong><%=answer.content%>
-                <br><%= link_to "Vote", vote_answer_path(answer), :method => 'post', :class => "btn btn-success", remote: true %> <% if question.answers && question.answers.length > 1 %>
-                  <% identification = answer.id + 1 %>
-                  <br>
-                  <h5 align="middle" class="answerInline">Votes: <span id="<%=identification.to_s%>upVote"><%=question.answers.order("id asc")[1].votes%></span></h5>
-                <% end %>
+                <br><%= link_to "Vote", vote_answer_path(answer), :method => 'post', :class => "btn btn-success", remote: true %>
+                  <% if question.answers && question.answers.length > 1 %>
+                    <% identification = answer.id + 1 %>
+                    <br>
+                    <h5 align="middle" class="answerInline">Votes: <span id="<%=answer.id.to_s%>upVote"><%=question.answers.order("id asc")[1].votes%></span></h5>
+                  <% end %>
                 <% end %>
               </span>
               <% if answer.id == question.answers.order("id asc")[0].id %>
@@ -50,11 +53,10 @@
           <% @this_comment = question.comments.new %>
           <%= render :partial => 'comments/form', :obect => [@this_question, @this_comment] %>
           <ul class="list-group" id="<%=question.id%>comments_list">
-            <% question.comments.order('id desc').limit(6).each do |comment| %>
+            <% question.comments.order('id desc').limit(13).each do |comment| %>
                 <li class="list-group-item"><%= comment.content %></li>
             <% end %>
           </ul>
-          <br><br><br>
         </li>
         <br><br>
       <% end %>
@@ -62,4 +64,3 @@
   </div>
 </div>
 <hr>
-<%= link_to "Add a question", new_question_path, :class => "btn-lg", :id => 'question-js', remote: true %>
