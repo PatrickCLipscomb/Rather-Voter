@@ -11,13 +11,17 @@
 
 
 Question.delete_all
-question_one = Question.create(name: "Bill Nye", content: "Is the Book Dune scientifically accurate?")
-
-answer_list = [
-  ["I've seen worms like that before", question_one, 0],
-  ["Only las drugas", question_one, 0]
-]
 Answer.delete_all
-answer_list.each do |content, question_id, vote|
-  Answer.create(content: content, question: question_id, votes: vote)
+Comment.delete_all
+
+10.times do
+  Question.create(name: Faker::GameOfThrones.character, content: Faker::StarWars.quote)
+end
+Question.all.each do |question|
+  2.times do
+    Answer.create(content: Faker::Hacker.say_something_smart, votes: rand(50) + 1, question_id: question.id)
+  end
+  4.times do
+    Comment.create(content: Faker::ChuckNorris.fact, question_id: question.id)
+  end
 end

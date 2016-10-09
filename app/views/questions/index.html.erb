@@ -1,5 +1,5 @@
 <div class="inline-header">
-  <h1>question Page</h1>
+  <h1>Rather Voter</h1>
   <%= link_to "Ask a question", new_question_path, :class => "btn-lg", :id => 'question-js', remote: true %>
 </div>
 <hr>
@@ -16,7 +16,9 @@
               <span align="middle" class="well answerInline">
                 <% if answer.id == question.answers.order("id asc").first.id %><strong>First Option: </strong><%=answer.content%>
                 <br>
+                <% if 1 == 0 %>
                 <%= image_tag(answer.image.url(:medium), :class => "answer-img" ) %>
+                <% end %>
                 <br>
                 <%= link_to "Vote", vote_answer_path(answer), :method => 'post', :class => "btn btn-success", remote: true %>
                 <br>
@@ -24,7 +26,9 @@
                 Votes: <span id="<%=answer.id.to_s%>upVote"><%=question.answers.order("id asc")[0].votes%></span></h5>
                 <% else %><strong>Second Option: </strong><%=answer.content%>
                 <br>
+                <% if 1 == 0 %>
                 <%= image_tag(answer.image.url(:medium), :class => "answer-img" ) %>
+                <% end %>
                 <br>
                 <%= link_to "Vote", vote_answer_path(answer), :method => 'post', :class => "btn btn-success", remote: true %>
                   <% if question.answers && question.answers.length > 1 %>
@@ -59,8 +63,8 @@
           <% @this_comment = question.comments.new %>
           <%= render :partial => 'comments/form', :obect => [@this_question, @this_comment] %>
           <ul class="list-group" id="<%=question.id%>comments_list">
-            <% question.comments.order('id desc').limit(13).each do |comment| %>
-                <li class="list-group-item" id="<%=comment.id.to_s%>-comment"><%= comment.content %>
+            <% question.comments.order('id desc').limit(7).each do |comment| %>
+                <li class="list-group-item commenito" id="<%=comment.id.to_s%>-comment"><%= comment.content %>
                   <span class="pull-right">
                     <%= button_to question_comment_path(question, comment), :method => "delete", remote: true, :class => "btn btn-danger btn-sm bottom-padding" do %>
                     <span class="glyphicon glyphicon-remove"></span>

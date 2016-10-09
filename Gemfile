@@ -15,6 +15,7 @@ gem "chartkick"
 gem "will_paginate"
 gem 'paperclip', '~> 4.1'
 gem 'remotipart', '~> 1.2'
+gem 'faker'
 
 group :development, :test do
   gem 'byebug', platform: :mri

@@ -1,4 +1,4 @@
-<% if @question.comments.length < 14 %>
+<% if @question.comments.length < 7 %>
   $('#<%=@question.id.to_s%>comments_list').prepend('<li class="list-group-item" id="<%=@comment.id.to_s%>-comment"><%=@comment.content%><span class="pull-right"><%= button_to question_comment_path(@question, @comment), :method => "delete", remote: true, :class => "btn btn-danger btn-sm bottom-padding" do %><span class="glyphicon glyphicon-remove"></span><% end %></span></li>');
   $('#<%=@question.id.to_s%>comments_list li:first').addClass("animated bounceInDown");
   $('.commentInputText').val("");
