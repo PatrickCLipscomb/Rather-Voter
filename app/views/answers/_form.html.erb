@@ -1,4 +1,4 @@
-<%= form_for [@question, @answer], html: {id: :answer_form}, remote: true do |f| %>
+<%= form_for [@question, @answer], html: {id: :answer_form} do |f| %>
   <div class="field">
     <%= f.label :content %>
     <%= f.text_field :content %>

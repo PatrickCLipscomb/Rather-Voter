@@ -31,13 +31,20 @@ class AnswersController < ApplicationController
     if @answer.save
       flash[:notice] = "Answer saved successfully"
       respond_to do |format|
-        format.html {redirect_to question_path(@question)}
+        # format.html {redirect_to question_path(@question)}
+        format.html {render 'crop'}
         format.js
       end
     else
       flash[:alert] = "Answer failed to save"
       render :new
     end
+  end
+  def crop
+    @answer = Answer.find(params[:id])
+    @answer.update_attributes(crop_params)
+    @answer.image.reprocess!
+    redirect_to question_path(@answer.question)
   end
   def update
     @answer = Answer.find(params[:id])
@@ -59,5 +66,9 @@ class AnswersController < ApplicationController
   private
   def answer_params
     params.require(:answer).permit(:content, :image, :question_id)
+  end
+
+  def crop_params
+    params.require(:answer).permit(:crop_x, :crop_y, :crop_w, :crop_h)
   end
 end

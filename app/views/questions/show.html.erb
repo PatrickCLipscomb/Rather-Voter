@@ -2,12 +2,15 @@
 
 <ul class="list-group well" id="question-answers">
   <% @question.answers.each do |answer| %>
-  <li class="list-group-item"><strong><%= answer.content %></strong></li>
+  <li class="list-group-item"><strong><%= answer.content %></strong>
+    <br><br>
+    <%= image_tag answer.image.url(:large) %>
+  </li>
   <% end %>
 </ul>
 
 <% if @question.answers.length < 2 %>
-  <%= link_to "Add a answer", new_question_answer_path(@question), :class => "btn btn-success", :id => "first-answer", remote: true %>
+  <%= link_to "Add a answer", new_question_answer_path(@question), :class => "btn btn-success", :id => "first-answer" %>
 <% else %>
   <h4>Limit of 2 answers</h4>
 <% end %>

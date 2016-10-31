@@ -13,9 +13,10 @@ gem 'jbuilder', '~> 2.5'
 gem "animate-rails"
 gem "chartkick"
 gem "will_paginate"
-gem 'paperclip', '~> 4.1'
+gem 'paperclip'
 gem 'remotipart', '~> 1.2'
 gem 'faker'
+gem 'jcrop-rails-v2'
 
 group :development, :test do
   gem 'byebug', platform: :mri
