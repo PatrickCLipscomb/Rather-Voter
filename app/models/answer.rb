@@ -5,7 +5,7 @@ class Answer < ActiveRecord::Base
   validates :content, :presence => true
   validates_length_of :content, :maximum => 200, :message => "less text please"
 
-  has_attached_file :image, :styles => { :medium => "120x120>", :large => "500x500#" }, :default_url => "/images/:style/missing_content.jpg", :processors => [:cropper]
+  has_attached_file :image, :styles => { :small => "100x100#", :large => "500x500>" }, :default_url => "/images/:style/missing_content.jpg", :processors => [:cropper]
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
